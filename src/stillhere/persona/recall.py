@@ -171,7 +171,8 @@ class DateScope:
     span: str
 
     def label(self) -> str:
-        return self.start.strftime("%Y年%m月%d日") if self.granularity == "day" else self.start.strftime("%Y年%m月")
+        d = self.start             # no strftime: it cannot take non-ASCII formats on Windows before Python 3.12
+        return f"{d.year:04d}年{d.month:02d}月{d.day:02d}日" if self.granularity == "day" else f"{d.year:04d}年{d.month:02d}月"
 
     def to_dict(self) -> dict:
         return {"start": self.start.isoformat(), "end": self.end.isoformat(), "granularity": self.granularity, "span": self.span, "timezone": "UTC+08:00"}

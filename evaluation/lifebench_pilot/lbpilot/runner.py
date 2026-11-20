@@ -139,7 +139,14 @@ class Run:
             return None
         s = snaps[-1]
         with tarfile.open(self.run_dir / "snapshots" / s["file"]) as t:
-            t.extractall(self.scratch, filter="data")
+            if hasattr(tarfile, "data_filter"):
+                t.extractall(self.scratch, filter="data")
+            else:                                          # older Python: refuse links and paths that leave the scratch dir
+                root = Path(self.scratch).resolve()
+                for m in t.getmembers():
+                    if not (m.isfile() or m.isdir()) or not (root / m.name).resolve().is_relative_to(root):
+                        raise RuntimeError(f"unsafe snapshot member: {m.name}")
+                t.extractall(self.scratch)
         (self.live() / "LIVE_DATE").write_text(s["date"], encoding="utf-8")
         self.state["added_through"] = s["date"]
         self.save()
