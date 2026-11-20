@@ -1,0 +1,72 @@
+# StillHere persona QLoRA (pilot): ONE fresh LoRA on Qwen3-8B @ b968826d, 4-bit NF4 double-quant, bf16 compute, ONE GPU (Colab L4 24GB first).
+# First-round pilot values, not tuned. persona_* keys are read by personatrain.train_persona and removed before LLaMA-Factory sees the config;
+# stillhere persona package resolves them (rows, steps, candidates, save/eval steps) into the package's config/training_config.yaml.
+
+### model
+model_name_or_path: Qwen/Qwen3-8B
+model_revision: b968826d9c46dd6066d109eabc6255188de91218
+trust_remote_code: false
+quantization_bit: 4
+quantization_method: bnb
+quantization_type: nf4
+double_quantization: true
+flash_attn: sdpa
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target: all
+
+### dataset (dataset_info.json names the exact files)
+dataset: persona_train
+eval_dataset: persona_dev
+template: qwen3
+enable_thinking: false
+mask_history: true
+train_on_prompt: false
+cutoff_len: 2048
+packing: false
+overwrite_cache: true
+preprocessing_num_workers: 2
+dataloader_num_workers: 0
+
+### output
+logging_steps: 5
+save_strategy: steps
+save_steps: 25
+save_only_model: false
+plot_loss: true
+overwrite_output_dir: false
+report_to: none
+include_num_input_tokens_seen: non_padding
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+learning_rate: 5.0e-5
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+weight_decay: 0.0
+max_grad_norm: 1.0
+optim: paged_adamw_8bit
+bf16: true
+gradient_checkpointing: true
+seed: 42
+data_seed: 42
+ddp_timeout: 180000000
+
+### eval (dev loss is recorded; it never selects the checkpoint)
+per_device_eval_batch_size: 1
+eval_strategy: steps
+eval_steps: 25
+load_best_model_at_end: false
+
+### persona (resolved by stillhere persona package)
+persona_expected_train_rows: null
+persona_expected_steps: null
+persona_candidate_steps: null

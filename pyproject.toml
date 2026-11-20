@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stillhere"
+dynamic = ["version"]
+description = "Personalized AI conversations with evidence-grounded long-term memory (persona skill, hybrid retrieval, optional QLoRA)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Zamp" }]
+keywords = ["persona", "long-term memory", "rag", "retrieval", "qlora", "chat", "evaluation"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = ["pyyaml>=6"]           # the core (import, persona card, lexical memory, API chat, CLI) needs no ML libraries
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "numpy>=1.26"]
+download = ["huggingface_hub>=0.23,<1"]
+embedding = ["numpy>=1.26", "torch>=2.3", "transformers>=4.51"]          # dense (V2D) memory on CPU or GPU
+tokenizer = ["tokenizers>=0.19"]
+gpu = ["numpy>=1.26", "torch>=2.3", "transformers>=4.51", "peft>=0.13", "bitsandbytes>=0.43", "accelerate>=0.30"]
+
+[project.scripts]
+stillhere = "stillhere.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "stillhere.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["stillhere*"]
+
+[tool.setuptools.package-data]
+"stillhere.persona" = ["*.html"]       # the local Studio / blind-review pages
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

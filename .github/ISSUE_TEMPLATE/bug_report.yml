@@ -1,0 +1,39 @@
+name: Bug report
+description: Something does not work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Do not paste real chats, persona cards, keys or private file paths.** Reproduce with the synthetic example
+        (`examples/synthetic/weflow_demo/`) when you can. Security or privacy problems: see SECURITY.md instead.
+  - type: input
+    id: version
+    attributes:
+      label: StillHere version or commit
+      placeholder: "0.1.0 / abc1234"
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command you ran
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: What happened (error text, with private parts removed)
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: "Windows 11 / Python 3.12 / CPU only (or GPU model) / API provider"

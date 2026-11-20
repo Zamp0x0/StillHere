@@ -1,0 +1,70 @@
+{
+  "experiment_id": "exp_example_eval_plan",
+  "kind": "evaluation",
+  "title": "Example evaluation plan on the synthetic persona (planned, not run)",
+  "base_model": {
+    "model_id": "Qwen/Qwen3-8B",
+    "revision": null,
+    "dtype": null,
+    "locator": null
+  },
+  "prompt_template": {
+    "name": "stillhere_qwen3_chat",
+    "version": "0.1",
+    "sha256": null
+  },
+  "seed": 7,
+  "datasets": [
+    {
+      "dataset_id": "synthetic_qiaomo_conversation",
+      "version": "0.1.0",
+      "split": "eval",
+      "sha256": "4de6e60819f6c2a6132ac0690951722f995796ea7b665699adffea2e81d9abbb",
+      "num_records": 1,
+      "origin": "synthetic",
+      "locator": "examples/synthetic/persona_qiaomo/conversation.json"
+    }
+  ],
+  "created_at": "2026-05-20T09:00:00+08:00",
+  "status": "planned",
+  "adapter": {
+    "adapter_id": "synthetic_demo_qlora_v0",
+    "base_model": {
+      "model_id": "Qwen/Qwen3-8B",
+      "revision": null,
+      "dtype": null,
+      "locator": null
+    },
+    "prompt_template": {
+      "name": "stillhere_qwen3_chat",
+      "version": "0.1",
+      "sha256": null
+    },
+    "origin": "synthetic",
+    "method": "qlora",
+    "sha256": null,
+    "locator": null
+  },
+  "training": null,
+  "evaluation": {
+    "suite": "persona_eval_v0",
+    "systems": [
+      "base",
+      "finetuned",
+      "finetuned_memory"
+    ],
+    "metrics": [
+      "semantic_appropriateness",
+      "persona_fidelity",
+      "factual_grounding"
+    ],
+    "judge": null,
+    "extra": {}
+  },
+  "code_revision": null,
+  "environment": {},
+  "results": [],
+  "artifacts": [],
+  "notes": "Illustrates the manifest shape. Status is planned; no results exist.",
+  "schema_version": "0.1"
+}

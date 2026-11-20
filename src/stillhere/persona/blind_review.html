@@ -1,0 +1,53 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>盲评 __TITLE__</title><style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1d2330;--mut:#6b7280;--line:#e3e6eb;--me:#95ec69;--ot:#fff;--acc:#2563eb;--sel:#dbeafe}
+@media (prefers-color-scheme:dark){:root{--bg:#14161a;--card:#1d2026;--ink:#e8eaee;--mut:#9aa1ad;--line:#30343c;--me:#2f6b2a;--ot:#2a2e36;--acc:#60a5fa;--sel:#1e3a5f}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+header{position:sticky;top:0;z-index:2;background:var(--card);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+header b{font-size:17px}.bar{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--acc)}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:8px 14px;cursor:pointer}
+button.p{background:var(--acc);color:#fff;border-color:var(--acc)}main{max-width:900px;margin:0 auto;padding:16px}
+.help{color:var(--mut);font-size:14px;margin-bottom:12px}.ctx{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.ln{display:flex;margin:4px 0}.ln.me{justify-content:flex-end}.b{max-width:75%;padding:6px 10px;border-radius:10px;background:var(--ot);border:1px solid var(--line);white-space:pre-wrap;word-break:break-word}
+.ln.me .b{background:var(--me);border-color:transparent;color:#111}.who{font-size:12px;color:var(--mut);margin:0 6px;align-self:center}
+.q{margin:14px 0 6px;font-weight:600}.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:640px){.opts{grid-template-columns:1fr}}
+.opt{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;min-height:90px}.opt h4{margin:0 0 8px;color:var(--mut);font-size:13px}
+.opt.on{border-color:var(--acc);background:var(--sel)}.opt .bb{display:inline-block;background:var(--me);color:#111;border-radius:10px;padding:6px 10px;margin:3px 0;white-space:pre-wrap;word-break:break-word}
+.row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;align-items:center}.tie.on{border-color:var(--acc);background:var(--sel)}
+textarea{width:100%;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);padding:8px;margin-top:8px}
+.nav{display:flex;justify-content:space-between;margin-top:16px}.dots{display:flex;flex-wrap:wrap;gap:4px;margin-top:16px}.dots span{width:22px;height:22px;border-radius:5px;background:var(--line);font-size:11px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.dots span.d{background:var(--acc);color:#fff}.dots span.c{outline:2px solid var(--ink)}
+</style></head><body>
+<header><b>盲评 __TITLE__</b><span id="cnt"></span><div class="bar"><i id="pb"></i></div><button class="p" id="exp">导出结果 CSV</button></header>
+<main><div class="help">看完上面的聊天，判断哪一条回复<b>更像 TA 本人、在这个语境下更自然</b>。左右顺序随机，看不出是哪一组。快捷键：<b>1</b> 左边　<b>2</b> 右边　<b>3</b> 差不多　<b>←/→</b> 上一题/下一题。答案自动保存在本浏览器里，做完点右上角"导出结果 CSV"。</div>
+<div id="q"></div><div class="nav"><button id="prev">← 上一题</button><button id="next">下一题 →</button></div><div class="dots" id="dots"></div></main>
+<script>
+const DATA=__DATA__, KEY="blind:__TITLE__:"+DATA.length;
+let ans={};try{ans=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+let i=0;const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ans))}catch(e){}};
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function ctx(t){return t.split("\n").map(l=>{const me=l.startsWith("我：");const ot=l.startsWith("对方：");const body=me?l.slice(2):ot?l.slice(3):l;
+ return `<div class="ln ${me?"me":""}">${me?"":`<span class="who">${ot?"对方":""}</span>`}<div class="b">${esc(body)}</div>${me?'<span class="who">TA</span>':""}</div>`}).join("")}
+function bubbles(t){return t.split("\n").filter(x=>x.trim()).map(x=>`<div><span class="bb">${esc(x)}</span></div>`).join("")||'<i>（空）</i>'}
+function render(){const d=DATA[i],a=ans[d.id]||{};
+ document.getElementById("q").innerHTML=`<div class="help">第 ${i+1} / ${DATA.length} 题（${d.id}）</div><div class="ctx">${ctx(d.context)}</div>
+ <div class="q">TA 接下来会怎么回？</div><div class="opts"><div class="opt ${a.c=="L"?"on":""}" data-v="L"><h4>左边（1）</h4>${bubbles(d.left)}</div>
+ <div class="opt ${a.c=="R"?"on":""}" data-v="R"><h4>右边（2）</h4>${bubbles(d.right)}</div></div>
+ <div class="row"><button class="tie ${a.c=="="?"on":""}" data-v="=">差不多（3）</button><span class="help" style="margin:0">选好后自动跳到下一题</span></div>
+ <textarea id="note" rows="2" placeholder="备注（可选）">${esc(a.n||"")}</textarea>`;
+ document.querySelectorAll("[data-v]").forEach(e=>e.onclick=()=>pick(e.dataset.v));
+ document.getElementById("note").oninput=e=>{ans[d.id]={...(ans[d.id]||{}),n:e.target.value};save()};
+ const done=DATA.filter(x=>ans[x.id]&&ans[x.id].c).length;document.getElementById("cnt").textContent=`已完成 ${done} / ${DATA.length}`;
+ document.getElementById("pb").style.width=(100*done/DATA.length)+"%";
+ document.getElementById("dots").innerHTML=DATA.map((x,k)=>`<span class="${ans[x.id]&&ans[x.id].c?"d":""} ${k==i?"c":""}" data-k="${k}">${k+1}</span>`).join("");
+ document.querySelectorAll("[data-k]").forEach(e=>e.onclick=()=>{i=+e.dataset.k;render()});window.scrollTo(0,0)}
+function pick(v){const d=DATA[i];ans[d.id]={...(ans[d.id]||{}),c:v};save();if(i<DATA.length-1)i++;render()}
+document.getElementById("prev").onclick=()=>{if(i>0){i--;render()}};document.getElementById("next").onclick=()=>{if(i<DATA.length-1){i++;render()}};
+document.addEventListener("keydown",e=>{if(e.target.tagName=="TEXTAREA")return;if(e.key=="1")pick("L");else if(e.key=="2")pick("R");else if(e.key=="3")pick("=");
+ else if(e.key=="ArrowLeft")document.getElementById("prev").click();else if(e.key=="ArrowRight")document.getElementById("next").click()});
+document.getElementById("exp").onclick=()=>{const q=s=>'"'+String(s).replace(/"/g,'""')+'"';
+ const rows=[["id","choice(L/R/=)","note"].join(",")].concat(DATA.map(d=>[d.id,(ans[d.id]||{}).c||"",(ans[d.id]||{}).n||""].map(q).join(",")));
+ const done=DATA.filter(x=>ans[x.id]&&ans[x.id].c).length;if(done<DATA.length&&!confirm(`还有 ${DATA.length-done} 题没做，仍然导出？`))return;
+ const b=new Blob(["﻿"+rows.join("\r\n")+"\r\n"],{type:"text/csv"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="BLIND_RESULT___TITLE__.csv";a.click()};
+render();
+</script></body></html>

@@ -1,0 +1,3 @@
+#!/bin/sh
+# StillHere privacy guard. Enable with: git config core.hooksPath .githooks
+exec python scripts/privacy_guard.py

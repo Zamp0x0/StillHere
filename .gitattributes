@@ -1,0 +1,11 @@
+# Normalise text files to LF in the repository.
+* text=auto eol=lf
+
+# Keep synthetic example data byte-stable across platforms (tests and manifests read exact bytes).
+examples/synthetic/** text eol=lf
+
+# The Qwen3 chat template text and its sha256 are pinned in this file; never rewrite it at checkout.
+src/stillhere/data/templates.py -text
+
+# Images are binary (the StillHere logo must stay byte-identical).
+*.png binary

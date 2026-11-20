@@ -1,0 +1,18 @@
+{
+  "request_id": "req_example_0001",
+  "bubbles": [
+    "啊抱抱你",
+    "老板是不是又在鸡蛋里挑骨头",
+    "要是你在北川 我就给你做杯热可可"
+  ],
+  "finish_reason": "stop",
+  "used_memory_ids": [
+    "mem_job_cafe"
+  ],
+  "usage": null,
+  "latency_ms": null,
+  "raw_text": null,
+  "error": null,
+  "created_at": "2026-05-20T19:30:06+08:00",
+  "schema_version": "0.1"
+}

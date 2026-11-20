@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="360" font-family="sans-serif" font-size="11">
+<rect width="100%" height="100%" fill="white"/><text x="360.0" y="20" text-anchor="middle" font-size="14">System cost per 100 QA, USD upper bound (memory build + answers; judge excluded)</text>
+<line x1="50" x2="700" y1="280.0" y2="280.0" stroke="#ddd"/><text x="45" y="284.0" text-anchor="end">$0.00</text>
+<line x1="50" x2="700" y1="232.0" y2="232.0" stroke="#ddd"/><text x="45" y="236.0" text-anchor="end">$0.30</text>
+<line x1="50" x2="700" y1="184.0" y2="184.0" stroke="#ddd"/><text x="45" y="188.0" text-anchor="end">$0.60</text>
+<line x1="50" x2="700" y1="136.0" y2="136.0" stroke="#ddd"/><text x="45" y="140.0" text-anchor="end">$0.90</text>
+<line x1="50" x2="700" y1="88.0" y2="88.0" stroke="#ddd"/><text x="45" y="92.0" text-anchor="end">$1.20</text>
+<line x1="50" x2="700" y1="40.0" y2="40.0" stroke="#ddd"/><text x="45" y="44.0" text-anchor="end">$1.50</text>
+<rect x="66.2" y="280.0" width="65.0" height="0.0" fill="#4C72B0"/>
+<text x="98.8" y="277.0" text-anchor="middle" font-size="9">$0.00</text>
+<rect x="131.2" y="278.9" width="65.0" height="1.1" fill="#55A868"/>
+<text x="163.8" y="275.9" text-anchor="middle" font-size="9">$0.01</text>
+<text x="131.2" y="294" text-anchor="middle" font-size="10">No Memory</text>
+<rect x="228.8" y="280.0" width="65.0" height="0.0" fill="#4C72B0"/>
+<text x="261.2" y="277.0" text-anchor="middle" font-size="9">$0.00</text>
+<rect x="293.8" y="267.7" width="65.0" height="12.3" fill="#55A868"/>
+<text x="326.2" y="264.7" text-anchor="middle" font-size="9">$0.08</text>
+<text x="293.8" y="294" text-anchor="middle" font-size="10">StillHere V2L</text>
+<rect x="391.2" y="280.0" width="65.0" height="0.0" fill="#4C72B0"/>
+<text x="423.8" y="277.0" text-anchor="middle" font-size="9">$0.00</text>
+<rect x="456.2" y="267.9" width="65.0" height="12.1" fill="#55A868"/>
+<text x="488.8" y="264.9" text-anchor="middle" font-size="9">$0.08</text>
+<text x="456.2" y="294" text-anchor="middle" font-size="10">StillHere V2D</text>
+<rect x="553.8" y="92.3" width="65.0" height="187.7" fill="#4C72B0"/>
+<text x="586.2" y="89.3" text-anchor="middle" font-size="9">$1.17</text>
+<rect x="618.8" y="266.6" width="65.0" height="13.4" fill="#55A868"/>
+<text x="651.2" y="263.6" text-anchor="middle" font-size="9">$0.08</text>
+<text x="618.8" y="294" text-anchor="middle" font-size="10">Mem0 OSS</text>
+<rect x="50" y="338" width="10" height="10" fill="#4C72B0"/><text x="64" y="347">memory build</text>
+<rect x="200" y="338" width="10" height="10" fill="#55A868"/><text x="214" y="347">answers</text>
+</svg>

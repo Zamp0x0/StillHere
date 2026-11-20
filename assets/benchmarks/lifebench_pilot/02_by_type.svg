@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="360" font-family="sans-serif" font-size="11">
+<rect width="100%" height="100%" fill="white"/><text x="550.0" y="20" text-anchor="middle" font-size="14">Accuracy by official question type (multi-label; n in parentheses)</text>
+<line x1="50" x2="1080" y1="280.0" y2="280.0" stroke="#ddd"/><text x="45" y="284.0" text-anchor="end">0%</text>
+<line x1="50" x2="1080" y1="232.0" y2="232.0" stroke="#ddd"/><text x="45" y="236.0" text-anchor="end">20%</text>
+<line x1="50" x2="1080" y1="184.0" y2="184.0" stroke="#ddd"/><text x="45" y="188.0" text-anchor="end">40%</text>
+<line x1="50" x2="1080" y1="136.0" y2="136.0" stroke="#ddd"/><text x="45" y="140.0" text-anchor="end">60%</text>
+<line x1="50" x2="1080" y1="88.0" y2="88.0" stroke="#ddd"/><text x="45" y="92.0" text-anchor="end">80%</text>
+<line x1="50" x2="1080" y1="40.0" y2="40.0" stroke="#ddd"/><text x="45" y="44.0" text-anchor="end">100%</text>
+<rect x="61.4" y="280.0" width="22.9" height="0.0" fill="#4C72B0"/>
+<text x="72.9" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="84.3" y="105.4" width="22.9" height="174.6" fill="#55A868"/>
+<text x="95.8" y="102.4" text-anchor="middle" font-size="9">73%</text>
+<rect x="107.2" y="100.0" width="22.9" height="180.0" fill="#C44E52"/>
+<text x="118.7" y="97.0" text-anchor="middle" font-size="9">75%</text>
+<rect x="130.1" y="121.8" width="22.9" height="158.2" fill="#8172B2"/>
+<text x="141.6" y="118.8" text-anchor="middle" font-size="9">66%</text>
+<text x="107.2" y="294" text-anchor="middle" font-size="10">Single_hop (44)</text>
+<rect x="175.9" y="280.0" width="22.9" height="0.0" fill="#4C72B0"/>
+<text x="187.3" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="198.8" y="197.9" width="22.9" height="82.1" fill="#55A868"/>
+<text x="210.2" y="194.9" text-anchor="middle" font-size="9">34%</text>
+<rect x="221.7" y="204.2" width="22.9" height="75.8" fill="#C44E52"/>
+<text x="233.1" y="201.2" text-anchor="middle" font-size="9">32%</text>
+<rect x="244.6" y="185.3" width="22.9" height="94.7" fill="#8172B2"/>
+<text x="256.0" y="182.3" text-anchor="middle" font-size="9">39%</text>
+<text x="221.7" y="294" text-anchor="middle" font-size="10">Multi_hop (38)</text>
+<rect x="290.3" y="280.0" width="22.9" height="0.0" fill="#4C72B0"/>
+<text x="301.8" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="313.2" y="264.0" width="22.9" height="16.0" fill="#55A868"/>
+<text x="324.7" y="261.0" text-anchor="middle" font-size="9">7%</text>
+<rect x="336.1" y="264.0" width="22.9" height="16.0" fill="#C44E52"/>
+<text x="347.6" y="261.0" text-anchor="middle" font-size="9">7%</text>
+<rect x="359.0" y="232.0" width="22.9" height="48.0" fill="#8172B2"/>
+<text x="370.4" y="229.0" text-anchor="middle" font-size="9">20%</text>
+<text x="336.1" y="294" text-anchor="middle" font-size="10">Temporal (15)</text>
+<rect x="404.8" y="280.0" width="22.9" height="0.0" fill="#4C72B0"/>
+<text x="416.2" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="427.7" y="150.8" width="22.9" height="129.2" fill="#55A868"/>
+<text x="439.1" y="147.8" text-anchor="middle" font-size="9">54%</text>
+<rect x="450.6" y="169.2" width="22.9" height="110.8" fill="#C44E52"/>
+<text x="462.0" y="166.2" text-anchor="middle" font-size="9">46%</text>
+<rect x="473.4" y="132.3" width="22.9" height="147.7" fill="#8172B2"/>
+<text x="484.9" y="129.3" text-anchor="middle" font-size="9">62%</text>
+<text x="450.6" y="294" text-anchor="middle" font-size="10">Pattern (13)</text>
+<rect x="519.2" y="280.0" width="22.9" height="0.0" fill="#4C72B0"/>
+<text x="530.7" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="542.1" y="200.0" width="22.9" height="80.0" fill="#55A868"/>
+<text x="553.6" y="197.0" text-anchor="middle" font-size="9">33%</text>
+<rect x="565.0" y="146.7" width="22.9" height="133.3" fill="#C44E52"/>
+<text x="576.4" y="143.7" text-anchor="middle" font-size="9">56%</text>
+<rect x="587.9" y="93.3" width="22.9" height="186.7" fill="#8172B2"/>
+<text x="599.3" y="90.3" text-anchor="middle" font-size="9">78%</text>
+<text x="565.0" y="294" text-anchor="middle" font-size="10">K-update (9)</text>
+<rect x="633.7" y="280.0" width="22.9" height="0.0" fill="#4C72B0"/>
+<text x="645.1" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="656.6" y="152.0" width="22.9" height="128.0" fill="#55A868"/>
+<text x="668.0" y="149.0" text-anchor="middle" font-size="9">53%</text>
+<rect x="679.4" y="168.0" width="22.9" height="112.0" fill="#C44E52"/>
+<text x="690.9" y="165.0" text-anchor="middle" font-size="9">47%</text>
+<rect x="702.3" y="216.0" width="22.9" height="64.0" fill="#8172B2"/>
+<text x="713.8" y="213.0" text-anchor="middle" font-size="9">27%</text>
+<text x="679.4" y="294" text-anchor="middle" font-size="10">Causal (15)</text>
+<rect x="748.1" y="280.0" width="22.9" height="0.0" fill="#4C72B0"/>
+<text x="759.6" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="771.0" y="100.0" width="22.9" height="180.0" fill="#55A868"/>
+<text x="782.4" y="97.0" text-anchor="middle" font-size="9">75%</text>
+<rect x="793.9" y="100.0" width="22.9" height="180.0" fill="#C44E52"/>
+<text x="805.3" y="97.0" text-anchor="middle" font-size="9">75%</text>
+<rect x="816.8" y="100.0" width="22.9" height="180.0" fill="#8172B2"/>
+<text x="828.2" y="97.0" text-anchor="middle" font-size="9">75%</text>
+<text x="793.9" y="294" text-anchor="middle" font-size="10">Conflict (12)</text>
+<rect x="862.6" y="280.0" width="22.9" height="0.0" fill="#4C72B0"/>
+<text x="874.0" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="885.4" y="184.0" width="22.9" height="96.0" fill="#55A868"/>
+<text x="896.9" y="181.0" text-anchor="middle" font-size="9">40%</text>
+<rect x="908.3" y="184.0" width="22.9" height="96.0" fill="#C44E52"/>
+<text x="919.8" y="181.0" text-anchor="middle" font-size="9">40%</text>
+<rect x="931.2" y="232.0" width="22.9" height="48.0" fill="#8172B2"/>
+<text x="942.7" y="229.0" text-anchor="middle" font-size="9">20%</text>
+<text x="908.3" y="294" text-anchor="middle" font-size="10">Hidden_info (5)</text>
+<rect x="977.0" y="40.0" width="22.9" height="240.0" fill="#4C72B0"/>
+<text x="988.4" y="37.0" text-anchor="middle" font-size="9">100%</text>
+<rect x="999.9" y="40.0" width="22.9" height="240.0" fill="#55A868"/>
+<text x="1011.3" y="37.0" text-anchor="middle" font-size="9">100%</text>
+<rect x="1022.8" y="40.0" width="22.9" height="240.0" fill="#C44E52"/>
+<text x="1034.2" y="37.0" text-anchor="middle" font-size="9">100%</text>
+<rect x="1045.7" y="40.0" width="22.9" height="240.0" fill="#8172B2"/>
+<text x="1057.1" y="37.0" text-anchor="middle" font-size="9">100%</text>
+<text x="1022.8" y="294" text-anchor="middle" font-size="10">Unanswerable (18)</text>
+<rect x="50" y="338" width="10" height="10" fill="#4C72B0"/><text x="64" y="347">No Memory</text>
+<rect x="200" y="338" width="10" height="10" fill="#55A868"/><text x="214" y="347">StillHere V2L</text>
+<rect x="350" y="338" width="10" height="10" fill="#C44E52"/><text x="364" y="347">StillHere V2D</text>
+<rect x="500" y="338" width="10" height="10" fill="#8172B2"/><text x="514" y="347">Mem0 OSS</text>
+</svg>

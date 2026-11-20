@@ -1,0 +1,71 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StillHere Persona Studio</title><style>
+:root{--bg:#f5f6f8;--card:#fff;--ink:#1d2330;--mut:#6b7280;--line:#e2e5ea;--acc:#2563eb;--ok:#15803d;--warn:#b45309;--bad:#b91c1c;--me:#95ec69}
+@media (prefers-color-scheme:dark){:root{--bg:#15171b;--card:#1e2127;--ink:#e7e9ed;--mut:#9aa1ad;--line:#30343b;--acc:#60a5fa;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;--me:#2f6b2a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:2}
+header b{font-size:17px}select,input,textarea,button{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+button{cursor:pointer}button.p{background:var(--acc);color:#fff;border-color:var(--acc)}nav{display:flex;gap:4px;flex-wrap:wrap}
+nav button.on{background:var(--acc);color:#fff;border-color:var(--acc)}main{max-width:1000px;margin:0 auto;padding:16px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}h3{margin:0 0 8px}
+table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--line);padding:6px;text-align:left;vertical-align:top;font-size:14px}
+.PASS,.READY,.DONE{color:var(--ok);font-weight:600}.PENDING,.PARTIAL_READY,.SKIPPED,.BLOCKED,.PARTIAL,.RUNNING{color:var(--warn);font-weight:600}.FAILED,.NOT_READY{color:var(--bad);font-weight:600}
+pre{white-space:pre-wrap;word-break:break-word;background:var(--bg);padding:10px;border-radius:8px;max-height:420px;overflow:auto;font-size:13px}
+.mut{color:var(--mut);font-size:13px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0}
+.msg{display:flex;margin:6px 0}.msg.me{justify-content:flex-start}.msg.you{justify-content:flex-end}.b{max-width:70%;padding:6px 10px;border-radius:10px;border:1px solid var(--line);white-space:pre-wrap}
+.msg.me .b{background:var(--me);color:#111;border-color:transparent}textarea{width:100%}
+</style></head><body>
+<header><b>StillHere Persona Studio</b><select id="prof"></select><nav id="tabs"></nav><span class="mut" id="be"></span></header>
+<main id="main"></main>
+<script>
+const T=["导入","构建进度","人物卡","记忆","训练","评测","聊天"];let tab=0,P=null,chat=[];
+const $=s=>document.querySelector(s),esc=s=>String(s??"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+async function api(p,b){const r=await fetch(p,b?{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}:{});const j=await r.json();if(!r.ok)throw new Error(j.error||r.status);return j}
+function tabs(){$("#tabs").innerHTML=T.map((t,i)=>`<button class="${i==tab?"on":""}" onclick="tab=${i};show()">${t}</button>`).join("")}
+async function profiles(){const r=await api("/api/profiles");$("#be").textContent="生成后端："+r.backend+(r.backend=="fake"?"（SYNTHETIC，非模型）":"");
+ $("#prof").innerHTML=r.profiles.map(p=>`<option value="${p.profile_id}">${esc(p.display_name)}（${p.profile_id}）</option>`).join("")||"<option value=''>（还没有人物）</option>";
+ if(!P&&r.profiles.length)P=r.profiles[0].profile_id;if(P)$("#prof").value=P}
+$("#prof").onchange=e=>{P=e.target.value;chat=[];show()};
+const V={
+async 0(){return `<div class="c"><h3>导入 WeFlow 微信 JSON</h3><div class="row"><input id="inp" size="70" placeholder="F:\\...\\chat.json"><button onclick="spk()">读取</button></div><div id="sp"></div></div>`},
+async 1(){if(!P)return "<div class='c'>先导入</div>";const s=await api("/api/state?profile="+P);const st=s.stages||{};
+ return `<div class="c"><h3>两条流水线的阶段状态</h3><table><tr><th>阶段</th><th>状态</th><th>信息</th></tr>${Object.entries(st).map(([k,v])=>`<tr><td>${k} ${v.stage}</td><td class="${v.status}">${v.status}</td><td class="mut">${esc(JSON.stringify(Object.fromEntries(Object.entries(v).filter(([a])=>!["stage","status","at","trace"].includes(a)))).slice(0,300))}</td></tr>`).join("")}</table></div>`},
+async 2(){if(!P)return "";const c=await api("/api/card?profile="+P);if(!c.card_id)return "<div class='c'>还没有人物卡</div>";
+ return `<div class="c"><h3>人物卡 ${c.card_id} · <span class="${c.manifest.review_status=="USER_REVIEWED"?"PASS":"PENDING"}">${c.manifest.review_status}</span></h3>
+ <div class="mut">只有下面这些字段可以修改；由数据算出来的统计不能手改。修改会生成新版本，旧版本保留。</div>
+ <textarea id="ed" rows="10">${esc(JSON.stringify(c.editable,null,1))}</textarea><div class="row"><button class="p" onclick="saveCard()">保存为新版本</button><button onclick="approve()">不修改，确认</button></div>
+ <h3>Persona Prompt</h3><pre>${esc(c.prompt)}</pre><h3>统计摘要</h3><pre>${esc(JSON.stringify(c.summary.reply_length,null,1))}</pre></div>`},
+async 3(){if(!P)return "";const m=await api("/api/memory?profile="+P);const s=m.status;
+ return `<div class="c"><h3>记忆 · <span class="${s.memory_status=="READY"?"PASS":"PENDING"}">${s.memory_status}</span></h3><table>${Object.entries(s).map(([k,v])=>`<tr><td>${k}</td><td>${esc(v)}</td></tr>`).join("")}</table>
+ ${m.report?`<pre>${esc(JSON.stringify(m.report.layers,null,1))}\n${esc(JSON.stringify(m.report.retrieval_probes,null,1))}</pre>`:""}
+ <h3>检索测试</h3><div class="row"><input id="mq" size="50" placeholder="例如：2025年5月3日聊了什么"><button onclick="mq()">检索</button></div><div id="mr"></div></div>`},
+async 4(){if(!P)return "";const t=await api("/api/training?profile="+P);
+ return `<div class="c"><h3>训练</h3><div class="mut">${esc(t.gpu_note)}</div><h3>训练包</h3><table>${t.packages.map(p=>`<tr><td>${p.package_id}</td><td>${p.kind}</td><td>${p.target||""}</td><td class="mut">${esc(p.notebook||"")}</td></tr>`).join("")||"<tr><td>（无）</td></tr>"}</table>
+ <h3>已导入的 Adapter</h3><table>${t.adapters.map(a=>`<tr><td>${a.adapter_id}</td><td>${a.name}</td><td>${a.checkpoint}</td></tr>`).join("")||"<tr><td>（无）</td></tr>"}</table></div>`},
+async 5(){if(!P)return "";const e=await api("/api/evaluation?profile="+P);const q=e.quality,r=e.runtime;const f=await api("/api/final_eval?profile="+P);
+ const fin=f.imported?`<div class="c"><h3>最终 Colab 评测（${esc(f.run)}）</h3><div class="mut">${esc(f.label)}</div>
+ <h3>记忆</h3><table>${Object.entries(f.memory).map(([k,v])=>`<tr><td>${k}</td><td>${esc(v)}</td></tr>`).join("")}</table>
+ <h3>Style（DeepSeek 0–100）</h3><pre>${esc(JSON.stringify(f.style,null,1))}</pre><h3>Memory 与综合分</h3><pre>${esc(JSON.stringify({memory:f.memory_scores,combined:f.combined},null,1))}</pre>
+ <h3>Reader</h3><pre>${esc(JSON.stringify(f.reader,null,1))}</pre><h3>Writer 审计（机器估计）</h3><pre>${esc(JSON.stringify(f.writer,null,1))}</pre>
+ <h3>推荐（未自动应用）</h3><pre>${esc(JSON.stringify(f.recommendation,null,1))}</pre></div>`:"";
+ return fin+`<div class="c"><h3>质量评估</h3>${q?`<pre>${esc(JSON.stringify(q,null,1))}</pre>`:"<div class='mut'>还没有 Dev 评测</div>"}
+ <h3>运行配置</h3>${r?`<pre>${esc(JSON.stringify({adapter:r.adapter,memory:r.memory,reason:r.selection_reason},null,1))}</pre>`:""}
+ <div class="row">手动覆盖：<button onclick="rt(true,null)">启用 Adapter</button><button onclick="rt(false,null)">关闭 Adapter</button><button onclick="rt(null,true)">启用记忆</button><button onclick="rt(null,false)">关闭记忆</button><button onclick="rt(null,null)">恢复自动选择</button></div></div>`},
+async 6(){if(!P)return "";const e=await api("/api/evaluation?profile="+P);const r=e.runtime;
+ return `<div class="c"><h3>聊天</h3><div class="mut">${r?`Prompt ${r.persona_prompt.card_id} · Adapter ${r.adapter.enabled?r.adapter.adapter_id:"关闭"} · 记忆 ${r.memory.enabled?"开启（"+r.memory.semantic_extraction+"）":"关闭"}`:"先运行构建，生成运行配置"}</div>
+ <div id="log">${chat.map(m=>`<div class="msg ${m.role=="me"?"me":"you"}"><div class="b">${esc(m.text)}</div></div>`).join("")}</div>
+ <div class="row"><input id="ci" size="60" placeholder="说点什么" onkeydown="if(event.key=='Enter')send()"><button class="p" onclick="send()">发送</button><button onclick="chat=[];show()">清空</button></div><div class="mut" id="ct"></div></div>`}};
+async function show(){tabs();try{$("#main").innerHTML=await V[tab]()}catch(e){$("#main").innerHTML=`<div class="c FAILED">${esc(e.message)}</div>`}}
+async function spk(){try{const r=await api("/api/speakers",{input:$("#inp").value});$("#sp").innerHTML=`<table>${r.speakers.map(s=>`<tr><td><b>${esc(s.display_name)}</b></td><td>${s.role=="contact"?"联系人":"导出账号"}</td><td>${s.text_messages} 条文字</td><td class="mut">${s.display_source}</td><td><button class="p" onclick="build(${s.index})">选这个人，开始构建</button></td></tr>`).join("")}</table>
+ <div class="row"><label><input type="checkbox" id="cl"> 同时生成 Colab L4 训练包（含真实私聊；上传由你自己决定）</label></div><div id="bj"></div>`}catch(e){$("#sp").innerHTML=`<div class="FAILED">${esc(e.message)}</div>`}}
+async function build(i){const cl=$("#cl").checked;const j=await api("/api/build",{input:$("#inp").value,speaker:i,target:cl?"colab-l4":"cpu-only",confirm_cloud:cl});poll(j.job)}
+async function poll(id){const j=await api("/api/job?id="+id);$("#bj").innerHTML=`<div class="${j.status}">${j.status}</div><pre>${esc((j.log||[]).join("\n"))}${j.error?"\n"+esc(j.error):""}</pre>`;
+ if(j.status=="RUNNING")setTimeout(()=>poll(id),1500);else{P=j.result?j.result.profile_id:P;await profiles()}}
+async function saveCard(){try{await api("/api/card",{profile:P,edits:JSON.parse($("#ed").value)});show()}catch(e){alert(e.message)}}
+async function approve(){await api("/api/card",{profile:P,approve:true});show()}
+async function mq(){const r=await api("/api/memory/query",{profile:P,q:$("#mq").value});$("#mr").innerHTML=`<pre>${esc(r.items.map(i=>`[${i.eid}] ${(i.time||"").slice(0,16)}\n${i.text}${i.memories.length?"\n（记忆："+i.memories.join("；")+"）":""}`).join("\n\n"))}</pre>`}
+async function rt(a,m){await api("/api/runtime",{profile:P,adapter:a,memory:m});show()}
+async function send(){const t=$("#ci").value.trim();if(!t)return;chat.push({role:"other",text:t});await show();
+ try{const r=await api("/api/chat",{profile:P,history:chat});chat.push({role:"me",text:r.text});await show();$("#ct").textContent=`模式 ${r.mode} · ${r.generator}${r.synthetic?"（SYNTHETIC）":""}${r.redacted?" · 已隐去隐私值":""}`}catch(e){alert(e.message)}}
+profiles().then(show);
+</script></body></html>

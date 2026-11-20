@@ -1,0 +1,29 @@
+name: security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 3 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  privacy-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: No weights, databases, .env files, secret-like content or private paths in the tree
+        run: python scripts/privacy_guard.py --all
+      - name: No secret-like strings anywhere in the git history
+        run: |
+          if git log -p --all | grep -E -n "sk-[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----"; then
+            echo "secret-like content found in history"; exit 1
+          fi

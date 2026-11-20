@@ -1,0 +1,47 @@
+# secrets: never commit real keys (.env.example is the empty template)
+.env
+.env.local
+.env.*.local
+
+# your private data: profiles, chats, memories, adapters (keep them outside the repository, or here: these paths are ignored)
+profiles/
+personas/
+.stillhere/
+*.sqlite
+*.sqlite3
+*.db
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+adapters/
+checkpoints/
+exports/
+downloads/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# model caches
+.cache/
+hf_cache/
+
+# editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

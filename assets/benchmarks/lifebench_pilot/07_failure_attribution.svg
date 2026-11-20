@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="360" font-family="sans-serif" font-size="11">
+<rect width="100%" height="100%" fill="white"/><text x="650.0" y="20" text-anchor="middle" font-size="14">Wrong answers by attributed cause (rule-based, see report)</text>
+<line x1="50" x2="1280" y1="280.0" y2="280.0" stroke="#ddd"/><text x="45" y="284.0" text-anchor="end">0%</text>
+<line x1="50" x2="1280" y1="232.0" y2="232.0" stroke="#ddd"/><text x="45" y="236.0" text-anchor="end">12%</text>
+<line x1="50" x2="1280" y1="184.0" y2="184.0" stroke="#ddd"/><text x="45" y="188.0" text-anchor="end">24%</text>
+<line x1="50" x2="1280" y1="136.0" y2="136.0" stroke="#ddd"/><text x="45" y="140.0" text-anchor="end">36%</text>
+<line x1="50" x2="1280" y1="88.0" y2="88.0" stroke="#ddd"/><text x="45" y="92.0" text-anchor="end">48%</text>
+<line x1="50" x2="1280" y1="40.0" y2="40.0" stroke="#ddd"/><text x="45" y="44.0" text-anchor="end">60%</text>
+<rect x="67.6" y="280.0" width="35.1" height="0.0" fill="#4C72B0"/>
+<text x="85.1" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="102.7" y="276.0" width="35.1" height="4.0" fill="#55A868"/>
+<text x="120.3" y="273.0" text-anchor="middle" font-size="9">1%</text>
+<rect x="137.9" y="276.0" width="35.1" height="4.0" fill="#C44E52"/>
+<text x="155.4" y="273.0" text-anchor="middle" font-size="9">1%</text>
+<rect x="173.0" y="276.0" width="35.1" height="4.0" fill="#8172B2"/>
+<text x="190.6" y="273.0" text-anchor="middle" font-size="9">1%</text>
+<text x="137.9" y="294" text-anchor="middle" font-size="10">INCORRECT ABSTENTION W</text>
+<rect x="243.3" y="-48.0" width="35.1" height="328.0" fill="#4C72B0"/>
+<text x="260.9" y="-51.0" text-anchor="middle" font-size="9">82%</text>
+<rect x="278.4" y="280.0" width="35.1" height="0.0" fill="#55A868"/>
+<text x="296.0" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="313.6" y="280.0" width="35.1" height="0.0" fill="#C44E52"/>
+<text x="331.1" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="348.7" y="280.0" width="35.1" height="0.0" fill="#8172B2"/>
+<text x="366.3" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<text x="313.6" y="294" text-anchor="middle" font-size="10">NO MEMORY ABSTAINED</text>
+<rect x="419.0" y="280.0" width="35.1" height="0.0" fill="#4C72B0"/>
+<text x="436.6" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="454.1" y="168.0" width="35.1" height="112.0" fill="#55A868"/>
+<text x="471.7" y="165.0" text-anchor="middle" font-size="9">28%</text>
+<rect x="489.3" y="164.0" width="35.1" height="116.0" fill="#C44E52"/>
+<text x="506.9" y="161.0" text-anchor="middle" font-size="9">29%</text>
+<rect x="524.4" y="144.0" width="35.1" height="136.0" fill="#8172B2"/>
+<text x="542.0" y="141.0" text-anchor="middle" font-size="9">34%</text>
+<text x="489.3" y="294" text-anchor="middle" font-size="10">PARTIAL EVIDENCE</text>
+<rect x="594.7" y="280.0" width="35.1" height="0.0" fill="#4C72B0"/>
+<text x="612.3" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="629.9" y="280.0" width="35.1" height="0.0" fill="#55A868"/>
+<text x="647.4" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="665.0" y="276.0" width="35.1" height="4.0" fill="#C44E52"/>
+<text x="682.6" y="273.0" text-anchor="middle" font-size="9">1%</text>
+<rect x="700.1" y="272.0" width="35.1" height="8.0" fill="#8172B2"/>
+<text x="717.7" y="269.0" text-anchor="middle" font-size="9">2%</text>
+<text x="665.0" y="294" text-anchor="middle" font-size="10">PARTIAL EVIDENCE+JUDGE</text>
+<rect x="770.4" y="280.0" width="35.1" height="0.0" fill="#4C72B0"/>
+<text x="788.0" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="805.6" y="252.0" width="35.1" height="28.0" fill="#55A868"/>
+<text x="823.1" y="249.0" text-anchor="middle" font-size="9">7%</text>
+<rect x="840.7" y="260.0" width="35.1" height="20.0" fill="#C44E52"/>
+<text x="858.3" y="257.0" text-anchor="middle" font-size="9">5%</text>
+<rect x="875.9" y="276.0" width="35.1" height="4.0" fill="#8172B2"/>
+<text x="893.4" y="273.0" text-anchor="middle" font-size="9">1%</text>
+<text x="840.7" y="294" text-anchor="middle" font-size="10">RETRIEVAL MISSING</text>
+<rect x="946.1" y="280.0" width="35.1" height="0.0" fill="#4C72B0"/>
+<text x="963.7" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="981.3" y="276.0" width="35.1" height="4.0" fill="#55A868"/>
+<text x="998.9" y="273.0" text-anchor="middle" font-size="9">1%</text>
+<rect x="1016.4" y="280.0" width="35.1" height="0.0" fill="#C44E52"/>
+<text x="1034.0" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="1051.6" y="280.0" width="35.1" height="0.0" fill="#8172B2"/>
+<text x="1069.1" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<text x="1016.4" y="294" text-anchor="middle" font-size="10">RETRIEVAL MISSING+JUDG</text>
+<rect x="1121.9" y="280.0" width="35.1" height="0.0" fill="#4C72B0"/>
+<text x="1139.4" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="1157.0" y="280.0" width="35.1" height="0.0" fill="#55A868"/>
+<text x="1174.6" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<rect x="1192.1" y="276.0" width="35.1" height="4.0" fill="#C44E52"/>
+<text x="1209.7" y="273.0" text-anchor="middle" font-size="9">1%</text>
+<rect x="1227.3" y="280.0" width="35.1" height="0.0" fill="#8172B2"/>
+<text x="1244.9" y="277.0" text-anchor="middle" font-size="9">0%</text>
+<text x="1192.1" y="294" text-anchor="middle" font-size="10">TEMPORAL OR UPDATE REA</text>
+<rect x="50" y="338" width="10" height="10" fill="#4C72B0"/><text x="64" y="347">No Memory</text>
+<rect x="200" y="338" width="10" height="10" fill="#55A868"/><text x="214" y="347">StillHere V2L</text>
+<rect x="350" y="338" width="10" height="10" fill="#C44E52"/><text x="364" y="347">StillHere V2D</text>
+<rect x="500" y="338" width="10" height="10" fill="#8172B2"/><text x="514" y="347">Mem0 OSS</text>
+</svg>

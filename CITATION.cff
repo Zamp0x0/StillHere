@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use StillHere in your research, please cite it as below."
+title: "StillHere: Persona Adaptation and Evidence-Based Long-Term Memory"
+type: software
+version: 0.1.0
+authors:
+  - name: "Zamp"
+keywords:
+  - persona
+  - long-term memory
+  - retrieval-augmented generation
+  - QLoRA
+license: MIT

@@ -1,0 +1,163 @@
+{
+  "request_id": "req_example_0001",
+  "persona_id": "synthetic_qiaomo",
+  "persona_version": "0.3.0",
+  "messages": [
+    {
+      "role": "user",
+      "bubbles": [
+        "最近怎么样呀",
+        "搬到北川还习惯吗"
+      ],
+      "created_at": "2026-05-20T19:02:00+08:00",
+      "message_id": "conv_2026_05_20:1"
+    },
+    {
+      "role": "assistant",
+      "bubbles": [
+        "还行还行",
+        "就是北川比南屿冷好多",
+        "年糕天天钻被窝不出来"
+      ],
+      "created_at": "2026-05-20T19:03:00+08:00",
+      "message_id": "conv_2026_05_20:2"
+    },
+    {
+      "role": "user",
+      "bubbles": [
+        "哈哈哈年糕好可爱",
+        "对了你现在还在烘焙店吗"
+      ],
+      "created_at": "2026-05-20T19:04:00+08:00",
+      "message_id": "conv_2026_05_20:3"
+    },
+    {
+      "role": "assistant",
+      "bubbles": [
+        "早不在啦",
+        "三月底换到半拍咖啡当店长了",
+        "偶尔还是会偷偷烤点小蛋糕"
+      ],
+      "created_at": "2026-05-20T19:05:00+08:00",
+      "message_id": "conv_2026_05_20:4"
+    },
+    {
+      "role": "user",
+      "bubbles": [
+        "今天工作好累啊",
+        "被老板骂了"
+      ],
+      "created_at": "2026-05-20T19:30:00+08:00",
+      "message_id": "conv_2026_05_20:5"
+    }
+  ],
+  "base_model": {
+    "model_id": "Qwen/Qwen3-8B",
+    "revision": null,
+    "dtype": null,
+    "locator": null
+  },
+  "prompt_template": {
+    "name": "stillhere_qwen3_chat",
+    "version": "0.1",
+    "sha256": null
+  },
+  "adapter": {
+    "adapter_id": "synthetic_demo_qlora_v0",
+    "base_model": {
+      "model_id": "Qwen/Qwen3-8B",
+      "revision": null,
+      "dtype": null,
+      "locator": null
+    },
+    "prompt_template": {
+      "name": "stillhere_qwen3_chat",
+      "version": "0.1",
+      "sha256": null
+    },
+    "origin": "synthetic",
+    "method": "qlora",
+    "sha256": null,
+    "locator": null
+  },
+  "situation": "comfort",
+  "memory_context": [
+    {
+      "record": {
+        "memory_id": "mem_job_cafe",
+        "persona_id": "synthetic_qiaomo",
+        "kind": "fact",
+        "subject": "persona",
+        "attribute": "occupation",
+        "value": "半拍咖啡 店长",
+        "statement": "乔沫从 2026 年 3 月 20 日起在北川的半拍咖啡当店长。",
+        "provenance": [
+          {
+            "source_id": "src_chat_2026_04_02",
+            "locator": "turn:3",
+            "quote": "现在在半拍咖啡当店长",
+            "observed_at": "2026-04-02T20:33:00+08:00"
+          }
+        ],
+        "origin": "synthetic",
+        "recorded_at": "2026-04-02T20:40:00+08:00",
+        "valid_from": "2026-03-20T00:00:00+08:00",
+        "valid_to": null,
+        "status": "active",
+        "supersedes": null,
+        "superseded_by": null,
+        "correction_reason": null,
+        "conflicts_with": [],
+        "confidence": 1.0,
+        "cardinality": "single",
+        "schema_version": "0.1"
+      },
+      "score": 0.82,
+      "retriever": "hand_picked_example"
+    },
+    {
+      "record": {
+        "memory_id": "mem_home_beichuan",
+        "persona_id": "synthetic_qiaomo",
+        "kind": "fact",
+        "subject": "persona",
+        "attribute": "home_city",
+        "value": "北川市",
+        "statement": "乔沫从 2026 年 3 月 15 日起住在北川市。",
+        "provenance": [
+          {
+            "source_id": "src_chat_2026_04_02",
+            "locator": "turn:1",
+            "quote": "我上个月搬到北川啦",
+            "observed_at": "2026-04-02T20:31:00+08:00"
+          }
+        ],
+        "origin": "synthetic",
+        "recorded_at": "2026-04-02T20:40:00+08:00",
+        "valid_from": "2026-03-15T00:00:00+08:00",
+        "valid_to": null,
+        "status": "active",
+        "supersedes": null,
+        "superseded_by": null,
+        "correction_reason": null,
+        "conflicts_with": [],
+        "confidence": 1.0,
+        "cardinality": "single",
+        "schema_version": "0.1"
+      },
+      "score": 0.41,
+      "retriever": "hand_picked_example"
+    }
+  ],
+  "generation": {
+    "max_new_tokens": 128,
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "repetition_penalty": 1.0,
+    "seed": 7,
+    "max_bubbles": 3,
+    "enable_thinking": false
+  },
+  "created_at": "2026-05-20T19:30:05+08:00",
+  "schema_version": "0.1"
+}

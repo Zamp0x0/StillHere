@@ -1,0 +1,88 @@
+# StillHere persona QLoRA r2 (Colab A100 40GB): ONE fresh LoRA on Qwen3-8B @ b968826d, 4-bit NF4 double-quant, bf16 compute, ONE GPU.
+#
+# r2 changes exactly ONE training variable relative to r1 (persona_qlora.yaml), plus the checkpoint grid and the selection rule:
+#   1. persona_train_system: persona_prompt  -> every training / dev row carries the SAME persona prompt the runtime uses as its system
+#      message (r1 trained with the short fixed SFT prompt and was served with the persona prompt; P3_GPU_RUN_R1_RESULTS.md names this
+#      train / inference mismatch as an untested cause of the length collapse).
+#   2. persona_candidate_policy: every_save  -> six evenly spaced candidate checkpoints instead of 50 % / 100 % (r1's dev loss kept falling
+#      while behaviour collapsed, so the selection needs earlier candidates).
+#   3. persona_selection_rule: r2  -> r1's rule + collapse guards (evaluation.SELECTION_RULE_R2), registered before r2 is trained.
+# Everything else (data dcb456759424, LoRA r16 / alpha 32 / dropout 0.05 / all linear, lr 5e-5 cosine, warmup 3 %, effective batch 8,
+# 1 epoch, cutoff 2048, seed 42) is r1's, so r1 vs r2 isolates the system-prompt change. The micro-batch stays 1 x grad-accum 8 on purpose
+# (identical optimisation trajectory except the prompt); an A100 has ample headroom (r1 peaked at 8.46 GB on an L4).
+# Why the data is NOT changed: R1_DATA_DIAGNOSIS.json shows the train targets are not concentrated (top-1 1.0 %, top-10 7.2 %, distinct
+# 0.82; the r1 cap of 20 per identical target already applies), while r1's generations were (top-1 9.3 %, distinct 0.51). The collapse is
+# a model / decoding behaviour, not a property of the targets, and short replies are this person's real style, so none are removed.
+
+### model
+model_name_or_path: Qwen/Qwen3-8B
+model_revision: b968826d9c46dd6066d109eabc6255188de91218
+trust_remote_code: false
+quantization_bit: 4
+quantization_method: bnb
+quantization_type: nf4
+double_quantization: true
+flash_attn: sdpa
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target: all
+
+### dataset (dataset_info.json names the exact files)
+dataset: persona_train
+eval_dataset: persona_dev
+template: qwen3
+enable_thinking: false
+mask_history: true
+train_on_prompt: false
+cutoff_len: 2048
+packing: false
+overwrite_cache: true
+preprocessing_num_workers: 2
+dataloader_num_workers: 0
+
+### output
+logging_steps: 5
+save_strategy: steps
+save_steps: 25
+save_only_model: false
+plot_loss: true
+overwrite_output_dir: false
+report_to: none
+include_num_input_tokens_seen: non_padding
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+learning_rate: 5.0e-5
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+weight_decay: 0.0
+max_grad_norm: 1.0
+optim: paged_adamw_8bit
+bf16: true
+gradient_checkpointing: true
+seed: 42
+data_seed: 42
+ddp_timeout: 180000000
+
+### eval (dev loss is recorded; it never selects the checkpoint)
+per_device_eval_batch_size: 1
+eval_strategy: steps
+eval_steps: 25
+load_best_model_at_end: false
+
+### persona (resolved by stillhere persona package)
+persona_expected_train_rows: null
+persona_expected_steps: null
+persona_candidate_steps: null
+persona_candidate_policy: every_save
+persona_selection_rule: r2
+persona_train_system: persona_prompt
+persona_run_label: r2

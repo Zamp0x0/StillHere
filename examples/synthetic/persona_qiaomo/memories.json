@@ -1,0 +1,325 @@
+[
+  {
+    "memory_id": "mem_home_nanyu",
+    "persona_id": "synthetic_qiaomo",
+    "kind": "fact",
+    "subject": "persona",
+    "attribute": "home_city",
+    "value": "南屿市",
+    "statement": "乔沫 2023 年 9 月到 2026 年 3 月中旬住在南屿市。",
+    "provenance": [
+      {
+        "source_id": "src_chat_2026_02_14",
+        "locator": "turn:2",
+        "quote": "南屿这两天又下雨了",
+        "observed_at": "2026-02-14T21:06:00+08:00"
+      }
+    ],
+    "origin": "synthetic",
+    "recorded_at": "2026-02-14T21:10:00+08:00",
+    "valid_from": "2023-09-01T00:00:00+08:00",
+    "valid_to": "2026-03-15T00:00:00+08:00",
+    "status": "active",
+    "supersedes": null,
+    "superseded_by": null,
+    "correction_reason": null,
+    "conflicts_with": [],
+    "confidence": 1.0,
+    "cardinality": "single",
+    "schema_version": "0.1"
+  },
+  {
+    "memory_id": "mem_home_beichuan",
+    "persona_id": "synthetic_qiaomo",
+    "kind": "fact",
+    "subject": "persona",
+    "attribute": "home_city",
+    "value": "北川市",
+    "statement": "乔沫从 2026 年 3 月 15 日起住在北川市。",
+    "provenance": [
+      {
+        "source_id": "src_chat_2026_04_02",
+        "locator": "turn:1",
+        "quote": "我上个月搬到北川啦",
+        "observed_at": "2026-04-02T20:31:00+08:00"
+      }
+    ],
+    "origin": "synthetic",
+    "recorded_at": "2026-04-02T20:40:00+08:00",
+    "valid_from": "2026-03-15T00:00:00+08:00",
+    "valid_to": null,
+    "status": "active",
+    "supersedes": null,
+    "superseded_by": null,
+    "correction_reason": null,
+    "conflicts_with": [],
+    "confidence": 1.0,
+    "cardinality": "single",
+    "schema_version": "0.1"
+  },
+  {
+    "memory_id": "mem_job_bakery",
+    "persona_id": "synthetic_qiaomo",
+    "kind": "fact",
+    "subject": "persona",
+    "attribute": "occupation",
+    "value": "云朵烘焙 甜点师",
+    "statement": "乔沫 2023 年 9 月到 2026 年 3 月初在云朵烘焙做甜点师。",
+    "provenance": [
+      {
+        "source_id": "src_chat_2026_02_14",
+        "locator": "turn:4",
+        "quote": "今天店里的泡芙又卖光了",
+        "observed_at": "2026-02-14T21:08:00+08:00"
+      }
+    ],
+    "origin": "synthetic",
+    "recorded_at": "2026-02-14T21:10:00+08:00",
+    "valid_from": "2023-09-01T00:00:00+08:00",
+    "valid_to": "2026-03-01T00:00:00+08:00",
+    "status": "active",
+    "supersedes": null,
+    "superseded_by": null,
+    "correction_reason": null,
+    "conflicts_with": [],
+    "confidence": 1.0,
+    "cardinality": "single",
+    "schema_version": "0.1"
+  },
+  {
+    "memory_id": "mem_job_cafe",
+    "persona_id": "synthetic_qiaomo",
+    "kind": "fact",
+    "subject": "persona",
+    "attribute": "occupation",
+    "value": "半拍咖啡 店长",
+    "statement": "乔沫从 2026 年 3 月 20 日起在北川的半拍咖啡当店长。",
+    "provenance": [
+      {
+        "source_id": "src_chat_2026_04_02",
+        "locator": "turn:3",
+        "quote": "现在在半拍咖啡当店长",
+        "observed_at": "2026-04-02T20:33:00+08:00"
+      }
+    ],
+    "origin": "synthetic",
+    "recorded_at": "2026-04-02T20:40:00+08:00",
+    "valid_from": "2026-03-20T00:00:00+08:00",
+    "valid_to": null,
+    "status": "active",
+    "supersedes": null,
+    "superseded_by": null,
+    "correction_reason": null,
+    "conflicts_with": [],
+    "confidence": 1.0,
+    "cardinality": "single",
+    "schema_version": "0.1"
+  },
+  {
+    "memory_id": "mem_cat_name_v1",
+    "persona_id": "synthetic_qiaomo",
+    "kind": "fact",
+    "subject": "cat",
+    "attribute": "name",
+    "value": "汤圆",
+    "statement": "乔沫的猫叫汤圆。",
+    "provenance": [
+      {
+        "source_id": "src_chat_2026_05_02",
+        "locator": "turn:1",
+        "quote": "你家汤圆最近还好吗",
+        "observed_at": "2026-05-02T22:10:00+08:00"
+      }
+    ],
+    "origin": "synthetic",
+    "recorded_at": "2026-05-02T22:12:00+08:00",
+    "valid_from": null,
+    "valid_to": null,
+    "status": "superseded",
+    "supersedes": null,
+    "superseded_by": "mem_cat_name_v2",
+    "correction_reason": null,
+    "conflicts_with": [],
+    "confidence": 0.6,
+    "cardinality": "single",
+    "schema_version": "0.1"
+  },
+  {
+    "memory_id": "mem_cat_name_v2",
+    "persona_id": "synthetic_qiaomo",
+    "kind": "fact",
+    "subject": "cat",
+    "attribute": "name",
+    "value": "年糕",
+    "statement": "乔沫的猫叫年糕。",
+    "provenance": [
+      {
+        "source_id": "src_chat_2026_05_02",
+        "locator": "turn:2",
+        "quote": "是年糕啦 不是汤圆",
+        "observed_at": "2026-05-02T22:11:00+08:00"
+      }
+    ],
+    "origin": "synthetic",
+    "recorded_at": "2026-05-02T22:15:00+08:00",
+    "valid_from": null,
+    "valid_to": null,
+    "status": "active",
+    "supersedes": "mem_cat_name_v1",
+    "superseded_by": null,
+    "correction_reason": "乔沫在对话中纠正了用户说错的猫名。",
+    "conflicts_with": [],
+    "confidence": 1.0,
+    "cardinality": "single",
+    "schema_version": "0.1"
+  },
+  {
+    "memory_id": "mem_pref_coriander",
+    "persona_id": "synthetic_qiaomo",
+    "kind": "preference",
+    "subject": "persona",
+    "attribute": "dislikes_food",
+    "value": "香菜",
+    "statement": "乔沫不吃香菜。",
+    "provenance": [
+      {
+        "source_id": "src_character_sheet",
+        "locator": "section:food",
+        "quote": null,
+        "observed_at": "2026-01-10T10:00:00+08:00"
+      }
+    ],
+    "origin": "synthetic",
+    "recorded_at": "2026-01-10T10:05:00+08:00",
+    "valid_from": null,
+    "valid_to": null,
+    "status": "active",
+    "supersedes": null,
+    "superseded_by": null,
+    "correction_reason": null,
+    "conflicts_with": [],
+    "confidence": 1.0,
+    "cardinality": "multi",
+    "schema_version": "0.1"
+  },
+  {
+    "memory_id": "mem_hobby_baking",
+    "persona_id": "synthetic_qiaomo",
+    "kind": "preference",
+    "subject": "persona",
+    "attribute": "hobby",
+    "value": "烘焙",
+    "statement": "乔沫的爱好之一是烘焙。",
+    "provenance": [
+      {
+        "source_id": "src_character_sheet",
+        "locator": "section:hobbies",
+        "quote": null,
+        "observed_at": "2026-01-10T10:00:00+08:00"
+      }
+    ],
+    "origin": "synthetic",
+    "recorded_at": "2026-01-10T10:05:00+08:00",
+    "valid_from": null,
+    "valid_to": null,
+    "status": "active",
+    "supersedes": null,
+    "superseded_by": null,
+    "correction_reason": null,
+    "conflicts_with": [],
+    "confidence": 1.0,
+    "cardinality": "multi",
+    "schema_version": "0.1"
+  },
+  {
+    "memory_id": "mem_hobby_climbing",
+    "persona_id": "synthetic_qiaomo",
+    "kind": "preference",
+    "subject": "persona",
+    "attribute": "hobby",
+    "value": "攀岩",
+    "statement": "乔沫的爱好之一是攀岩。",
+    "provenance": [
+      {
+        "source_id": "src_character_sheet",
+        "locator": "section:hobbies",
+        "quote": null,
+        "observed_at": "2026-01-10T10:00:00+08:00"
+      }
+    ],
+    "origin": "synthetic",
+    "recorded_at": "2026-01-10T10:05:00+08:00",
+    "valid_from": null,
+    "valid_to": null,
+    "status": "active",
+    "supersedes": null,
+    "superseded_by": null,
+    "correction_reason": null,
+    "conflicts_with": [],
+    "confidence": 1.0,
+    "cardinality": "multi",
+    "schema_version": "0.1"
+  },
+  {
+    "memory_id": "mem_birthday_oct",
+    "persona_id": "synthetic_qiaomo",
+    "kind": "fact",
+    "subject": "persona",
+    "attribute": "birthday_month",
+    "value": "10",
+    "statement": "乔沫的生日在十月（来源 A，未核实）。",
+    "provenance": [
+      {
+        "source_id": "src_note_friend_a",
+        "locator": null,
+        "quote": null,
+        "observed_at": "2026-03-01T09:00:00+08:00"
+      }
+    ],
+    "origin": "synthetic",
+    "recorded_at": "2026-03-01T09:05:00+08:00",
+    "valid_from": null,
+    "valid_to": null,
+    "status": "active",
+    "supersedes": null,
+    "superseded_by": null,
+    "correction_reason": null,
+    "conflicts_with": [
+      "mem_birthday_nov"
+    ],
+    "confidence": 0.5,
+    "cardinality": "single",
+    "schema_version": "0.1"
+  },
+  {
+    "memory_id": "mem_birthday_nov",
+    "persona_id": "synthetic_qiaomo",
+    "kind": "fact",
+    "subject": "persona",
+    "attribute": "birthday_month",
+    "value": "11",
+    "statement": "乔沫的生日在十一月（来源 B，未核实）。",
+    "provenance": [
+      {
+        "source_id": "src_note_friend_b",
+        "locator": null,
+        "quote": null,
+        "observed_at": "2026-03-05T09:00:00+08:00"
+      }
+    ],
+    "origin": "synthetic",
+    "recorded_at": "2026-03-05T09:05:00+08:00",
+    "valid_from": null,
+    "valid_to": null,
+    "status": "active",
+    "supersedes": null,
+    "superseded_by": null,
+    "correction_reason": null,
+    "conflicts_with": [
+      "mem_birthday_oct"
+    ],
+    "confidence": 0.5,
+    "cardinality": "single",
+    "schema_version": "0.1"
+  }
+]
